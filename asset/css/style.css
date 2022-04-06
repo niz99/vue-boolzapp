@@ -1,0 +1,38 @@
+.sfondo{
+    height: 100vh;
+    background-image: 
+        linear-gradient(to bottom,
+        #009688 0px,
+        #009699 15vh,
+        #dddbd1 15vh,
+        #d2dbdc 100%);
+}
+
+.img-profile{
+    width: 50px;
+    height: 50px;
+}
+
+p{
+    margin-bottom: 0;
+}
+
+.sfondo-chat{
+    background-image: url('./../img-boolzap/mine.jpg');
+}
+
+.sent{
+    background-color: #09e9d2;
+}
+
+.received{
+    background-color: white;
+}
+
+.rounded-3{
+    border-radius: 1rem!important;
+}
+
+.input-group{
+    align-items: center;
+}
