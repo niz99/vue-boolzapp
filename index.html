@@ -98,7 +98,7 @@
                                     v-for="(contact, index) in contacts[indexChange].messages"
                                     :class="(contact.status == 'sent') ? 'align-self-end sent' : 'align-self-start received'">
                                     <span>{{contact.message}}</span>
-                                    <span>{{contact.date}}</span>
+                                    <span class="align-self-end fa-grey">{{contact.date}}</span>
                                 </li>
                             </ul>
                         </div>

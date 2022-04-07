@@ -169,13 +169,13 @@ var app = new Vue({
         },
         sendNewMessage: function(indexChange){
             let myMessage = {
-                date: '10/01/2020 15:30:55',
+                date: new Date().toLocaleString(),
                 message: this.newMessage,
                 status: 'sent'
             }
 
             let answer = {
-                date: '10/01/2020 15:51:00',
+                date: new Date().toLocaleString(),
                 message: 'Ok',
                 status: 'received'
             }
