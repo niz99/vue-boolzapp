@@ -5,6 +5,7 @@ var app = new Vue({
             name: 'Sofia',
             avatar: '_io'
         },
+        indexChange: 0,
         contacts: [{
                 name: 'Michele',
                 avatar: '_1',
@@ -159,5 +160,10 @@ var app = new Vue({
                 ],
             }
         ]
+    },
+    methods: {
+        changeContact: function(index){
+            this.indexChange = index
+        }
     }
 })

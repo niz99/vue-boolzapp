@@ -18,12 +18,12 @@
 
     <div id="root">
         <div class="sfondo py-3">
-            <div class="container bg-white">
-                <div class="row">
-                    <div class="col-4 px-0">
+            <div class="container bg-white h-100">
+                <div class="row h-100">
+                    <div class="col-4 px-0 h-100">
                         <!-- colonna sinistra -->
                         <!-- prima sezione con profilo utente -->
-                        <div class="d-flex justify-content-between p-2 bg-up">
+                        <div class="d-flex justify-content-between p-2 bg-up border-end border-2">
                             <div class="d-flex align-items-center">
                                 <img :src="`./asset/img/avatar` + profilo.avatar + `.jpg`" alt="profilo"
                                     class="rounded-circle img-profile me-3">
@@ -48,41 +48,41 @@
                         <!-- terza sezione con l'input cerca -->
                         <div class="d-flex align-items-center p-1">
                             <div class="input-group input-group-sm">
-                                <span class="input-group-text" id="inputGroup-sizing-sm"><i
-                                        class="fa solid fa-magnifying-glass"></i></span>
+                                <span class="input-group-text" id="inputGroup-sizing-sm">
+                                    <i class="fa solid fa-magnifying-glass"></i>
+                                </span>
                                 <input type="text" class="form-control" aria-label="Sizing example input"
                                     aria-describedby="inputGroup-sizing-sm" placeholder="Cerca o inizia una nuova chat">
                             </div>
                         </div>
                         <!-- quarta sezione con i contatti -->
-                        <div class="p-3 py-0">
-                            <ul class="list-group list-group-flush">
-                                <li class="d-flex justify-content-between align-items-center list-group-item" role="button" v-for="(contact, index) in contacts">
-                                    <div class="d-flex align-items-center">
-                                        <img :src="`./asset/img/avatar` + contact.avatar + `.jpg`" alt="profilo"
-                                            class="rounded-circle img-profile me-3">
-                                        <div>
-                                            <span>{{contact.name}}</span>
-                                            <p>Ultimo messaggio inviato</p>
-                                        </div>
+                        <ul class="list-group list-group-flush h-75 overflow-scroll">
+                            <li class="d-flex justify-content-between align-items-center list-group-item" role="button"
+                                v-for="(contact, index) in contacts" @click="changeContact(index)">
+                                <div class="d-flex align-items-center">
+                                    <img :src="`./asset/img/avatar` + contact.avatar + `.jpg`" alt="profilo"
+                                        class="rounded-circle img-profile me-3">
+                                    <div>
+                                        <span>{{contact.name}}</span>
+                                        <p>Ultimo messaggio inviato</p>
                                     </div>
-                                    <div class="d-flex align-items-center">
-                                        <span>12:00</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
+                                </div>
+                                <div class="d-flex align-items-center">
+                                    <span>12:00</span>
+                                </div>
+                            </li>
+                        </ul>
                     </div>
                     <div class="col-8 d-flex flex-column justify-content-between px-0">
                         <!-- colonna destra -->
                         <!-- prima sezione con il contatto selezionato -->
                         <div class="d-flex justify-content-between p-2 bg-up">
                             <div class="d-flex align-items-center">
-                                <img src="./asset/img/avatar_1.jpg" alt="profilo"
+                                <img :src="`./asset/img/avatar${contacts[indexChange].avatar}.jpg`" alt="profilo"
                                     class="rounded-circle img-profile me-3">
                                 <div class="d-flex flex-column">
-                                    <span>Nome e Cognome</span>
-                                    <span>Ultimo messaggio inviato</span>
+                                    <span>{{contacts[indexChange].name}}</span>
+                                    <span>Ultimo messaggio oggi alle 12:00</span>
                                 </div>
                             </div>
                             <div class="d-flex align-items-center">
@@ -94,23 +94,23 @@
                         <!-- seconda sezione con la chat -->
                         <div class="sfondo-chat p-3 h-100">
                             <ul class="list-group list-group-flush d-flex flex-column">
-                                <li class="list-group-item sent rounded-3 mb-3 align-self-end">
-                                    Hai portato a spasso il tuo cane?
-                                </li>
-                                <li class="list-group-item received rounded-3 mb-3 align-self-start">
-                                    Hai portato a spasso il tuo cane?
+                                <li class="list-group-item sent rounded-3 mb-3 d-flex flex-column"
+                                    v-for="(contact, index) in contacts[indexChange].messages"
+                                    :class="(contact.status == 'sent') ? 'align-self-end sent' : 'align-self-start received'">
+                                    <span>{{contact.message}}</span>
+                                    <span>{{contact.date}}</span>
                                 </li>
                             </ul>
                         </div>
                         <!-- terza sezione con campo per scrivere il messaggio -->
                         <div class="input-group input-group-sm bg-input">
                             <div class="p-3">
-                                <i class="fa solid fa-magnifying-glass"></i>
+                                <i class="fa-regular fa-face-smile fa-grey"></i>
                             </div>
                             <input type="text" class="form-control" aria-label="Sizing example input"
                                 aria-describedby="inputGroup-sizing-sm" placeholder="Scrivi un messaggio">
                             <div class="p-3">
-                                <i class="fa-solid fa-microphone"></i>
+                                <i class="fa-solid fa-microphone fa-grey"></i>
                             </div>
                         </div>
                     </div>
