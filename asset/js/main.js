@@ -7,6 +7,7 @@ var app = new Vue({
         },
         indexChange: 0,
         newMessage: '',
+        searchName: '',
         contacts: [{
                 name: 'Michele',
                 avatar: '_1',
@@ -190,6 +191,17 @@ var app = new Vue({
                     inserimento.push(answer)
                 }
             }
+        },
+        searchContact: function(){
+            this.contacts.forEach(element => {
+                element.visible = true
+                let letterName = this.searchName.toLowerCase()
+                let nameInList = this.name.toLowerCase()
+
+                if(!(nameInList.includes(letterName))){
+                    return element.visible = false
+                }
+            });
         }
     }
 })

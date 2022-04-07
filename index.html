@@ -25,7 +25,7 @@
                         <!-- prima sezione con profilo utente -->
                         <div class="d-flex justify-content-between p-2 bg-up border-end border-2">
                             <div class="d-flex align-items-center">
-                                <img :src="`./asset/img/avatar` + profilo.avatar + `.jpg`" alt="profilo"
+                                <img :src="`./asset/img/avatar${profilo.avatar}.jpg`" alt="profilo"
                                     class="rounded-circle img-profile me-3">
                                 <span>{{profilo.name}}</span>
                             </div>
@@ -52,13 +52,13 @@
                                     <i class="fa solid fa-magnifying-glass"></i>
                                 </span>
                                 <input type="text" class="form-control" aria-label="Sizing example input"
-                                    aria-describedby="inputGroup-sizing-sm" placeholder="Cerca o inizia una nuova chat">
+                                    aria-describedby="inputGroup-sizing-sm" placeholder="Cerca o inizia una nuova chat" v-model="searchName" @keyup="searchContact">
                             </div>
                         </div>
                         <!-- quarta sezione con i contatti -->
                         <ul class="list-group list-group-flush h-75 overflow-scroll">
                             <li class="d-flex justify-content-between align-items-center list-group-item" role="button"
-                                v-for="(contact, index) in contacts" @click="changeContact(index)">
+                                v-for="(contact, index) in contacts" @click="changeContact(index)" v-if="contact.visible">
                                 <div class="d-flex align-items-center">
                                     <img :src="`./asset/img/avatar${contact.avatar}.jpg`" alt="profilo"
                                         class="rounded-circle img-profile me-3">
@@ -73,7 +73,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="col-8 d-flex flex-column justify-content-between px-0">
+                    <div class="col-8 d-flex flex-column justify-content-between px-0 h-100">
                         <!-- colonna destra -->
                         <!-- prima sezione con il contatto selezionato -->
                         <div class="d-flex justify-content-between p-2 bg-up">
@@ -92,7 +92,7 @@
                             </div>
                         </div>
                         <!-- seconda sezione con la chat -->
-                        <div class="sfondo-chat p-3 h-100">
+                        <div class="sfondo-chat p-3 h-100 overflow-scroll">
                             <ul class="list-group list-group-flush d-flex flex-column">
                                 <li class="list-group-item sent rounded-3 mb-3 d-flex flex-column"
                                     v-for="(contact, index) in contacts[indexChange].messages"
