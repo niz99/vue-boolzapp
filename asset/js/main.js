@@ -6,6 +6,7 @@ var app = new Vue({
             avatar: '_io'
         },
         indexChange: 0,
+        newMessage: '',
         contacts: [{
                 name: 'Michele',
                 avatar: '_1',
@@ -164,6 +165,31 @@ var app = new Vue({
     methods: {
         changeContact: function(index){
             this.indexChange = index
+        },
+        sendNewMessage: function(indexChange){
+            let myMessage = {
+                date: '10/01/2020 15:30:55',
+                message: this.newMessage,
+                status: 'sent'
+            }
+
+            let answer = {
+                date: '10/01/2020 15:51:00',
+                message: 'Ok',
+                status: 'received'
+            }
+
+            if(!this.newMessage == ''){
+                let inserimento = this.contacts[this.indexChange].messages
+                inserimento.push(myMessage)
+
+                this.newMessage = ''
+
+                setTimeout(myFunction, 1000);
+                function myFunction(){
+                    inserimento.push(answer)
+                }
+            }
         }
     }
 })

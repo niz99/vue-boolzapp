@@ -60,7 +60,7 @@
                             <li class="d-flex justify-content-between align-items-center list-group-item" role="button"
                                 v-for="(contact, index) in contacts" @click="changeContact(index)">
                                 <div class="d-flex align-items-center">
-                                    <img :src="`./asset/img/avatar` + contact.avatar + `.jpg`" alt="profilo"
+                                    <img :src="`./asset/img/avatar${contact.avatar}.jpg`" alt="profilo"
                                         class="rounded-circle img-profile me-3">
                                     <div>
                                         <span>{{contact.name}}</span>
@@ -107,7 +107,7 @@
                             <div class="p-3">
                                 <i class="fa-regular fa-face-smile fa-grey"></i>
                             </div>
-                            <input type="text" class="form-control" aria-label="Sizing example input"
+                            <input v-model="newMessage" @keyup.enter="sendNewMessage(indexChange)" type="text" class="form-control" aria-label="Sizing example input"
                                 aria-describedby="inputGroup-sizing-sm" placeholder="Scrivi un messaggio">
                             <div class="p-3">
                                 <i class="fa-solid fa-microphone fa-grey"></i>
